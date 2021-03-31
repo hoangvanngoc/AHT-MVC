@@ -1,4 +1,7 @@
 <?php
+namespace MVC\Controllers;
+
+use MVC\Models\Task;
 
 class tasksController extends Controller
 {

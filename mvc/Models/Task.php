@@ -1,5 +1,5 @@
 <?php
-
+namespace MVC\Models;
 class Task extends Model
 {
     public function create($title, $description)
