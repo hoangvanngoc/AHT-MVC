@@ -23,6 +23,7 @@ class Dispatcher
     public function loadController()
     {
         $name = ucfirst($this->request->controller) . "Controller";
+  
         $file = 'MVC\\Controllers\\' . $name;
         $controller = new $file();
         return $controller;

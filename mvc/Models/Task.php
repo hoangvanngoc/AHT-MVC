@@ -5,17 +5,39 @@ use MVC\core\Model;
 
 class Task extends Model
 {
-    public $id;
-    public $title;
-    public $description ;
+   protected $id;
+   protected $title;
+   protected $description;
 
-    function __set($name, $value)
+    public function setId($id)
     {
-        $this->{$name} = $value;
+       $this->id = $id; 
     }
 
-    function __get($name)
+    public function setTitle($title)
     {
-        $this->{$name};
+       $this->title = $title;
     }
+
+    public function setDsc($description)
+    {
+       $this->description = $description;
+    }
+
+    public function getId()
+    {
+      return $this->id;
+    }
+
+    public function getTitle()
+    {
+       $this->title;
+    }
+
+    public function getDsc()
+    {
+       $this->description;
+    }
+
 }
+

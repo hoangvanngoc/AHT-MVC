@@ -31,9 +31,9 @@ class tasksController extends Controller
             $tasks = new Task();
             $taskRespository = new TaskRepository();
 
-            $tasks->title = $_POST['title'];
-            $tasks->description = $_POST['description'];  
-         
+            $tasks->setTitle($_POST['title']);
+            $tasks->setDsc($_POST['description']); 
+                   
             if($taskRespository->add($tasks)){
                 header("location: " . WEBROOT . "tasks/index");
             }
@@ -44,18 +44,21 @@ class tasksController extends Controller
 
     public function edit($id)
     {
-        $tasks = new Task();
         $taskRespository = new TaskRepository();
 
         $d['tasks'] = $taskRespository->get($id);  
 
         if(isset($_POST['title'])){    
-            $tasks->id = $id;   
-            $tasks->title = $_POST['title'];
-            $tasks->description = $_POST['description'];
+
+            $tasks = new Task();
+
+            $tasks->setId($id);   
+            $tasks->setTitle($_POST['title']);
+            $tasks->setDsc($_POST['description']);
             
             if($taskRespository->edit($tasks)){
                 header("location:" . WEBROOT . "tasks/index");
+                
             }
         }
         $this->set($d);
@@ -66,7 +69,7 @@ class tasksController extends Controller
     {
         $tasks = new Task();
         $taskRespository = new TaskRepository();
-        $tasks->id = $id;
+        $tasks->setId($id);
 
         if($taskRespository->delete($tasks)){
             header("location:" . WEBROOT . "tasks/index");

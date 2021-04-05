@@ -1,13 +1,13 @@
 <?php 
 namespace MVC\Models;
 
-use MVC\core\ResaurceModel;
 use MVC\Models\TaskResaurceModel;
 
 class TaskRepository
 {
     protected $taskResaurceModel;
 
+    // khởi tạo và truyền vào giá trị 
     public function __construct()
     {
         $this->taskResaurceModel = new TaskResaurceModel('tasks', null, new Task);
