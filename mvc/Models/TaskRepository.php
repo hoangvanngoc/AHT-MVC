@@ -1,16 +1,16 @@
 <?php 
-namespace MVC\Models;
+namespace mvc\Models;
 
-use MVC\Models\TaskResaurceModel;
+use mvc\Models\TaskResaurceModel;
 
 class TaskRepository
 {
-    protected $taskResaurceModel;
+    private $taskResaurceModel;
 
     // khởi tạo và truyền vào giá trị 
     public function __construct()
     {
-        $this->taskResaurceModel = new TaskResaurceModel('tasks', null, new Task);
+        $this->taskResaurceModel = new TaskResaurceModel();
     }
 
     public function add($model) 
@@ -23,12 +23,13 @@ class TaskRepository
         return $this->taskResaurceModel->save($model);
     }
 
-    public function delete($model)
+    public function delete(\mvc\Models\Task $model)
     {
+    
         return $this->taskResaurceModel->delete($model);     
     }
 
-    public function get($id)
+    public function get(int $id)
     {
         return $this->taskResaurceModel->find($id);
     }

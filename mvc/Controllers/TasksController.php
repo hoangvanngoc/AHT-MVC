@@ -1,24 +1,18 @@
 <?php
-namespace MVC\Controllers;
+namespace mvc\Controllers;
 
-use MVC\Models\Task;
-use MVC\core\Controller;
-use MVC\Models\TaskRepository;
+use mvc\Models\Task;
+use mvc\Core\Controller;
+use mvc\Models\TaskRepository;
 
-class tasksController extends Controller
+
+class TasksController extends Controller
 {
-
-    /** 
-    * index show 
-    *
-    *
-    *
-    */
  
     public function index() 
     {
         $tasks = new Task();
-        $taskRespository = new TaskRepository();
+    $taskRespository = new TaskRepository();
 
         $d['tasks'] = $taskRespository->getAll($tasks);
         $this->set($d);
@@ -35,7 +29,7 @@ class tasksController extends Controller
             $tasks->setDsc($_POST['description']); 
                    
             if($taskRespository->add($tasks)){
-                header("location: " . WEBROOT . "tasks/index");
+                header("location: " . WEBROOT . "Tasks/index");
             }
         }
         $this->render("add");

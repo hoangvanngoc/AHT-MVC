@@ -1,5 +1,5 @@
 <?php 
-namespace MVC\core;
+namespace mvc\Core;
 
 interface ResaurceModelInterface{
 

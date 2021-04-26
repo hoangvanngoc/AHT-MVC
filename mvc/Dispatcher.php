@@ -1,8 +1,8 @@
 <?php
-namespace MVC;
+namespace mvc;
 
-use MVC\Request;
-use MVC\Router;
+use mvc\Request;
+use mvc\Router;
 
 class Dispatcher
 {
@@ -12,9 +12,8 @@ class Dispatcher
     public function dispatch()
     {
         $this->request = new Request();
-        
         Router::parse($this->request->url, $this->request);
-        
+    
         $controller = $this->loadController();
 
         call_user_func_array([$controller, $this->request->action], $this->request->params);
@@ -22,11 +21,16 @@ class Dispatcher
 
     public function loadController()
     {
-        $name = ucfirst($this->request->controller) . "Controller";
+        // $name = ucfirst($this->request->controller) . "Controller";
   
-        $file = 'MVC\\Controllers\\' . $name;
-        $controller = new $file();
+        // $file = 'mvc\\Controllers\\' . $name;
+        // $controller = new $file();
+        $controller =  new \mvc\Controllers\TasksController;
+
         return $controller;
+        // $controller = new TasksController();
+        // return $controller;
+     
     }
 
 }

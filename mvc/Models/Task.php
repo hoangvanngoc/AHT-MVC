@@ -1,13 +1,15 @@
 <?php
-namespace MVC\Models;
+namespace mvc\Models;
 
-use MVC\core\Model;
+use mvc\Core\Model;
 
 class Task extends Model
 {
    protected $id;
    protected $title;
    protected $description;
+
+
 
     public function setId($id)
     {
@@ -31,12 +33,12 @@ class Task extends Model
 
     public function getTitle()
     {
-       $this->title;
+     return  $this->title;
     }
 
     public function getDsc()
     {
-       $this->description;
+     return  $this->description;
     }
 
 }

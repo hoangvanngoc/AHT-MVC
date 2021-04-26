@@ -1,8 +1,8 @@
 <?php
-namespace MVC\core;
+namespace mvc\Core;
 
-use MVC\config\Database;
-use MVC\core\ResaurceModelInterface;
+use mvc\Config\Database;
+use mvc\Core\ResaurceModelInterface;
 use PDO;
 
 class ResaurceModel implements ResaurceModelInterface
@@ -11,7 +11,6 @@ class ResaurceModel implements ResaurceModelInterface
    private $id;
    private $model;
 
-   // phương thức init khởi tạo
    function _init($table, $id, $model)
    {
         $this->table = $table;
@@ -19,12 +18,12 @@ class ResaurceModel implements ResaurceModelInterface
         $this->model = $model;
    }
 
-   // phương thức insert và update  dữ liệu
    function save($model)
    {
+     
       $placeName = [];
        $properties = $model->getProperties();
-
+      
       // nếu id  bằng null thì sẽ loại bỏ id 
        if($model->getId() === null){
           unset($properties['id']);  
@@ -48,7 +47,7 @@ class ResaurceModel implements ResaurceModelInterface
 
       
        if ($model->getId() !== null) {
-         $sql = "UPDATE {$this->table} SET " . $cols . ', updated_at = :updated_at WHERE id = :id';
+         $sql = "UPDATE {$this->table} SET " . $cols . ', updated_at = :updated_at WHERE '.$this->id.' = :id';
          $req = Database::getBdd()->prepare($sql);
          $date = array("id" => $model->getId(), 'updated_at' => date('Y-m-d H:i:s'));
 
@@ -83,6 +82,7 @@ class ResaurceModel implements ResaurceModelInterface
       $req->execute();
 
       return $req->fetchAll(PDO::FETCH_OBJ);
+   
     }
 
    // xóa theo id

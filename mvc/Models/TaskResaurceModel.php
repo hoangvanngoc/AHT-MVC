@@ -1,13 +1,13 @@
 <?php 
-namespace MVC\Models;
+namespace mvc\Models;
 
-use MVC\core\ResaurceModel;
-use MVC\Models\Task;
+use mvc\Models\Task;
+use mvc\Core\ResaurceModel;
 
 class TaskResaurceModel extends ResaurceModel
 {
-    function __construct($table, $id, $tasks)
+    function __construct()
     {
-        parent::_init($table, $id, $tasks);
+        parent::_init('tasks', 'id', new Task);
     }
 }

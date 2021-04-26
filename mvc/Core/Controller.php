@@ -1,7 +1,7 @@
 <?php
-namespace MVC\core;
+namespace mvc\Core;
 
-use MVC\core\Model;
+use mvc\Core\Model;
 
     class Controller
     {
@@ -11,17 +11,22 @@ use MVC\core\Model;
         public function set($d)
         {
             $this->vars = array_merge($this->vars, $d);
+            // echo "<pre>";
+            // print_r($this->vars); 
+            // die;
         }
 
         public function render($filename)
         {
-            extract($this->vars);
+           extract($this->vars);
+     
             ob_start();
             
-            require(ROOT . "Views/" . ucfirst(str_replace("MVC\\s\\","",str_replace('Controller', '', get_class($this)))) . '/' . $filename . '.php');
-
+            require(ROOT . "Views/" . ucfirst(str_replace("mvc\\s\\","",str_replace('Controller', '', get_class($this)))) . '/' . $filename . '.php');
+        
+            
             $content_for_layout = ob_get_clean();
-
+     
             if ($this->layout == false)
             {
                 $content_for_layout;
